@@ -1,0 +1,693 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Supervised Machine Learning: Regression and Classification, Arjunan K</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="903a1c03-38e9-4ec3-bd38-773c1baf8fbc" class="page serif"><header><h1 class="page-title"><strong><strong>Supervised Machine Learning: Regression and Classification, Arjunan K</strong></strong></h1></header><div class="page-body"><p id="4dd1d950-512b-40e7-8cb3-2f38c612c422" class="">Detailed pdf plus handwritten notes of Machine Learning Specialization by Andrew Ng in collaboration between DeepLearning.AI and Stanford Online. In this you can view the first course notes of the specialization, Supervised Machine Learning: Regression and Classification.</p><h1 id="6521eadc-2096-4695-9659-b8191525e08f" class="">Intro to <strong>Machine Learning</strong></h1><p id="8744b0ac-ccd4-4252-972a-6fc944c28ec4" class="">Machine Learning is the Ability of computers to learn without being explicitly programmed. There are different types of Machine Learning Algorithms.</p><ol type="1" id="7a84458d-4514-4454-b454-227f96cd305c" class="numbered-list" start="1"><li>Supervised Learning</li></ol><ol type="1" id="9226b7d4-08e4-4bb9-90fb-cb968f7a0570" class="numbered-list" start="2"><li>Unsupervised Learning</li></ol><ol type="1" id="29766f05-465f-46a6-ae8a-3e8e55dc0329" class="numbered-list" start="3"><li>Recommender Systems</li></ol><ol type="1" id="2fa18468-570c-4b00-9293-699cb597971e" class="numbered-list" start="4"><li>Reinforcement Learning</li></ol><h1 id="868c89b0-4e48-44cf-a445-d07977c355b8" class="">Supervised Learning</h1><p id="c96ebac1-8223-44de-97fd-25db122dc8ab" class="">Machines are trained using well &quot;labelled&quot; training data, and on basis of that data, machines predict the output. The labelled data means some input data is already tagged with the correct output. It find a mapping function to map the input variable(x) with the output variable(y). Some use cases are given below,</p><ul id="bbb96fcf-ad40-48f1-9e97-0055f5b50448" class="bulleted-list"><li style="list-style-type:disc">Spam Filtering</li></ul><ul id="48c4803f-821c-4a78-8066-8d44956fca5d" class="bulleted-list"><li style="list-style-type:disc">Speech Recognition</li></ul><ul id="e940b874-46dd-4c15-a9a8-5c70800ced73" class="bulleted-list"><li style="list-style-type:disc">Text Translation</li></ul><ul id="d0e43192-43d7-4fa0-a293-bbbd2ef5d616" class="bulleted-list"><li style="list-style-type:disc">Online Advertising</li></ul><ul id="526e928f-341d-4377-bfbd-7bd5bddd1362" class="bulleted-list"><li style="list-style-type:disc">Self-Driving Car</li></ul><ul id="413a0358-dbd1-4313-981b-c0b3f3cd170b" class="bulleted-list"><li style="list-style-type:disc">Visual Inspection (Identifying defect in products)</li></ul><h3 id="4d5c124b-5b58-4704-8e17-36f85682b98c" class="">Types of Supervised Learning</h3><ol type="1" id="6b6f2a12-01fb-4438-8752-c1a21863b98c" class="numbered-list" start="1"><li>Regression</li></ol><ol type="1" id="9651273e-ec61-403e-ac46-f09f3198cf33" class="numbered-list" start="2"><li>Classification</li></ol><h1 id="57ffc325-9ca6-4c97-a1ea-893c1cf011d6" class="">Unsupervised Learning</h1><p id="2438ef78-796f-42b8-ab85-641f9f2651ea" class="">Models are not supervised using labelled training dataset. Instead, models itself find the hidden patterns and insights from the given data. It learns from un-labelled data to predict the output. </p><h3 id="0a98fc5a-d551-4d06-9eda-74ca2777dbe0" class="">Types of Unsupervised Learning</h3><ol type="1" id="78b4a359-496b-4918-8c83-62216cfc18fd" class="numbered-list" start="1"><li>Clustering (Group similar data)</li></ol><ol type="1" id="b34305a0-1501-4a40-943a-9a8396773577" class="numbered-list" start="2"><li>Anomaly Detection (Finds unusual data points)</li></ol><ol type="1" id="89874055-0a33-44cb-b313-75c8f67f3873" class="numbered-list" start="3"><li>Dimensionality Reduction (Compress data to fewer numbers)</li></ol><h1 id="7846c023-f930-4d1c-aeb2-70bf31c019ed" class=""><strong>REGRESSION</strong></h1><p id="36383fc9-3819-46c1-a7bb-3f6b02f6f785" class="">It’s used as a method for predictive modelling in machine learning in which an algorithm is used to predict continuous outcomes. Commonly used regression is </p><h3 id="a1c8865a-ca3f-4255-9b39-ae6d2a44d5d1" class=""><strong>Linear Regression</strong></h3><ol type="1" id="cd7ff4a8-58ca-4327-9349-35b8c19402a1" class="numbered-list" start="1"><li>Simple Linear Regression - (one dependent and one independent variable) </li></ol><ol type="1" id="84034355-aa7d-4447-a779-d1db8972f6ce" class="numbered-list" start="2"><li>Multiple linear regression - (one dependent and multiple independent variable)</li></ol><h1 id="7afaec74-c8e1-40bc-8463-9b42b7cede5a" class=""><strong>CLASSIFICATION</strong></h1><p id="e4359799-74b4-4a0c-9fb9-5e5fa3995ab4" class="">In Classification, a program learns from the given dataset or observations and then classifies new observation into a number of classes or groups. Such as, Yes or No, 0 or 1, Spam or Not Spam, cat or dog etc. Classes can be called as targets/labels or categories. Commonly used classification is </p><h3 id="91541344-5dcd-4d5a-87fb-cc47c80a7b31" class=""><strong>Logistic Regression</strong></h3><p id="4ee1cebb-b829-4704-9f45-a0c26a25aec1" class="">In this note we will be focusing on the math behind the Linear and Logistic Regression Models. </p><p id="17f17874-07fe-4880-98d9-6939beba184e" class="">
+</p><h1 id="d3546723-a4ba-4f67-a2b4-9c6fd7ad7d6c" class=""><span style="border-bottom:0.05em solid"><strong>SIMPLE LINEAR REGRESSION</strong></span></h1><ul id="15ceb059-4e7d-483a-8083-8617037e671c" class="bulleted-list"><li style="list-style-type:disc">It is fitting a straight line to your data. </li></ul><ul id="99808632-b68d-4837-a10c-26f0e7b79058" class="bulleted-list"><li style="list-style-type:disc">Model the relation between independent (Input X) and dependent (Output Y) by fitting a linear equation to observed data.</li></ul><h1 id="b625ef69-c0c4-45b0-aedc-ff08c87e8691" class="">What is Cost Function?</h1><p id="9689fb99-f20b-4a73-b2b4-c74ec100d3e4" class="">A cost function is an important parameter that determines how well a machine learning model performs for a given dataset. It calculates the difference between the expected value and predicted value and represents it as a single real number. It is the average of loss function (Difference between predicted and actual value). </p><p id="f1e664c7-38b9-4340-8032-055c2cd3cd84" class="">Our aim is to minimize the cost function, which is achieved using <strong>Gradient Descent</strong>.</p><h3 id="cbcf306f-082a-422c-bd7a-5ebc4ffbe90c" class="">Types of cost function.</h3><ol type="1" id="1de0b5e3-4144-4a8b-9fb5-f4258953aa34" class="numbered-list" start="1"><li>Mean Squared Error (MSE) for Linear Regression</li></ol><ol type="1" id="484e9661-f224-43a3-96ce-0761d3f0bc0f" class="numbered-list" start="2"><li>Log Loss for Logistic Regression</li></ol><h3 id="c01665dd-1239-4202-8005-ee379ff8915c" class="">Cost Function for Linear Regression - MSE (Convex)</h3><figure id="65123bcf-6f1e-4b38-95d9-bf23ca5b6103" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/convex.png?raw=true"><img style="width:672px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/convex.png?raw=true"/></a></figure><p id="166af4ed-5d7d-4624-aa28-2fdd4e02fbdf" class="">
+</p><h1 id="8add5c88-7dac-4703-9070-579d83f3a67e" class="">Gradient Descent</h1><p id="251d175e-e8f5-42a0-8ed7-e2b316cfca63" class="">Gradient descent is an optimization algorithm which is commonly-used to train machine learning models and neural networks. Training data helps these models learn over time, and the cost function within gradient descent specifically acts as a barometer, gauging its accuracy with each iteration of parameter updates. Until the function is close to or equal to zero, the model will continue to adjust its parameters to yield the smallest possible error.</p><h1 id="fbc9ab41-6ea0-47f2-9c47-dcbfc41f5f6b" class="">Normal Equation (Alternative for Gradient Descent)</h1><ul id="40f1df97-1467-4d5e-a6f4-b403b88333ab" class="bulleted-list"><li style="list-style-type:disc">Only for Linear Regression</li></ul><ul id="a6e6fdb4-8d40-4c16-9ceb-c97e0b582c5e" class="bulleted-list"><li style="list-style-type:disc">Solve w and b without iteration.</li></ul><ul id="b3b9573a-cc90-41fc-b8e0-1a77155979a8" class="bulleted-list"><li style="list-style-type:disc">But not a generalized one for other learning algorithm.</li></ul><ul id="249b7e11-c6c4-4359-bd7d-6b3edd8733be" class="bulleted-list"><li style="list-style-type:disc">when number of features is large &gt; 1000, it is slow.</li></ul><ul id="6d7a82b1-d2ae-47e3-ac3d-aaf0ea821dc2" class="bulleted-list"><li style="list-style-type:disc">most libraries use this under the hood.</li></ul><ul id="1e96d521-6819-4337-8b63-6bb940bed73d" class="bulleted-list"><li style="list-style-type:disc">but gradient is better</li></ul><figure id="9c82d139-9895-42b9-aa2b-c2c1c21c05dd" class="image"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/SLR.jpg?raw=true"><img src="https://github.com/arjunan-k/ML_C1/blob/main/Images/SLR.jpg?raw=true"/></a></figure><p id="41dcc5f0-d158-4d21-8c1f-c3e1d01ecec0" class="">
+</p><h1 id="6100c80e-87a3-4425-a328-921a3ee556dc" class="">Learning Rate</h1><p id="f3c3f1bf-e656-47fa-ac37-a5ed5dab9bb5" class="">The learning rate is a hyperparameter that controls how much to change the model in response to the estimated error each time the model weights are updated. </p><ul id="85f900e5-52fe-43ec-92d8-bc7c69999c94" class="bulleted-list"><li style="list-style-type:disc">Small learning rate may result slow gradient descent.</li></ul><ul id="8795618c-e6cf-4b10-a0ac-039283c8a466" class="bulleted-list"><li style="list-style-type:disc">Large learning rate may result in divergence of descent (Fail to converge to minimum).</li></ul><ul id="99bccd51-f5fd-4f9a-a981-5f408af04c35" class="bulleted-list"><li style="list-style-type:disc">If the cost function reaches local minimum, slope become zero. So w = w, not going to descent after that.</li></ul><ul id="82bab32f-586a-4fd5-8953-46cd6c0f5e1e" class="bulleted-list"><li style="list-style-type:disc">Fixed learning rate has no problem, since derivative part decrease as we decent.</li></ul><ul id="435c50f1-b493-4d81-8eea-b3592cc43111" class="bulleted-list"><li style="list-style-type:disc"><strong>Alpha</strong> value can be 0.001 and increased 3X times based on requirement. If Cost function is increasing decrease <strong>Alpha</strong> and Vice Versa.</li></ul><figure id="3ef726cf-c3bf-4621-bad6-e74ef660980b" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/learning_rate.png?raw=true"><img style="width:624px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/learning_rate.png?raw=true"/></a></figure><p id="7c8cb64a-2ce4-4864-8e96-b7860dfdb54c" class="">
+</p><p id="880d5792-26cb-4d2f-b631-eb505c05e313" class="">
+</p><p id="98926e5d-4d52-42b4-b9fa-cf4aaba49b39" class="">
+</p><p id="f4fbb5d7-156c-4f7e-9f03-f6b77cc3b970" class="">
+</p><p id="54f11eef-5667-4315-be20-5a9328bff677" class="">
+</p><p id="463e049a-0b0e-469c-8ab9-e8486a8ebe0e" class="">
+</p><h1 id="e3700bbd-62e0-4b48-8aaa-648a4cf4692f" class="">1. Batch gradient descent (Used in this course)</h1><p id="ec139197-1c33-4d3c-9031-91ce5741d465" class="">Each step of gradient descent uses all training data. This process referred to as a training epoch.</p><figure id="ef42b0f8-b760-4320-a5da-d154eb8edec8" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/contour.png?raw=true"><img style="width:576px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/contour.png?raw=true"/></a></figure><h1 id="40e29a90-9eb6-464b-9587-108391222463" class="">2. Stochastic gradient descent</h1><p id="aa778be4-1846-461b-b3f9-681b8d1eac03" class="">Each step of gradient descent uses a subset of training data. It runs a training epoch for each example within the dataset and it updates each training example&#x27;s parameters one at a time.</p><h1 id="ed45b317-d83b-475b-afd4-7921fdb501a7" class="">3. Mini-batch gradient descent</h1><p id="37fb0632-68ff-4647-848a-0bd3628199bd" class="">Mini-batch gradient descent combines concepts from both batch gradient descent and stochastic gradient descent. It splits the training dataset into small batch sizes and performs updates on each of those batches. This approach strikes a balance between the computational efficiency of batch gradient descent and the speed of stochastic gradient descent.</p><p id="9047d0b5-4184-4ab6-8b98-fe65d2839d5e" class="">
+</p><p id="bff6ae65-a8da-45e3-a882-84041e435ea9" class="">
+</p><h1 id="682c413f-ca69-4699-8504-183e93eb9a73" class=""><span style="border-bottom:0.05em solid">Multiple Linear Regression</span></h1><ul id="db6bfe9d-9152-42c7-9b9b-d9dc21556982" class="bulleted-list"><li style="list-style-type:disc">Here we predict one dependent variable from multiple independent variable.</li></ul><figure id="4f4f62a5-4c92-477e-9d10-e678b1328c80" class="image"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/MLR.jpg?raw=true"><img style="width:720px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/MLR.jpg?raw=true"/></a></figure><p id="cf95d930-e9ac-4a5f-b56c-480a84a1c47a" class="">
+</p><h1 id="0efd24f3-0b3e-4d0f-b2d4-48ae40c507fa" class=""><strong>WHAT IS VECTORIZATION?</strong></h1><p id="aee5cd3a-b6fa-4772-b127-fddb084afdbb" class="">Vectorization is used to speed up the code without using loop. Using such a function can help in minimizing the running time of code efficiently. Various operations are being performed over vector such as <strong>dot product of vectors</strong> which is also known as <strong>scalar product.  </strong></p><p id="2b88617a-7729-441a-af2f-481a7a58f523" class="">It uses principle of parallel running, which is also easy to scale.</p><figure id="1b1a28dc-fb9e-40d0-b0c5-1f5180daaf47" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/dotproduct.png?raw=true"><img style="width:624px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/dotproduct.png?raw=true"/></a></figure><h1 id="d6271668-1afc-4ee2-a061-86a5892834bc" class="">Feature Scaling</h1><p id="15dbdea3-2443-4f2e-a701-c6a8e9271e5b" class="">Feature Scaling is a technique to standardize the independent features present in the data in a fixed range.</p><p id="fd4f48f1-15eb-4485-8d73-bbd12a6c4fa6" class="">Example, if we have weight of a person in a dataset with values in the range 15kg to 100kg, then feature scaling transforms all the values to the range 0 to 1 where 0 represents lowest weight and 1 represents highest weight instead of representing the weights in kgs.</p><figure id="c00e2579-9170-400a-89fd-631dc365cde3" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/feature_scaling.png?raw=true"><img style="width:432px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/feature_scaling.png?raw=true"/></a></figure><p id="1711f6d7-12e4-44e9-8767-c71e46898080" class="">
+</p><p id="e0546e31-a44e-4cb3-8853-a2491c7d308b" class="">
+</p><p id="8adbf8ee-5092-4847-941e-df2b8533b693" class=""><strong>Types of Feature Scaling:</strong></p><h3 id="abe10fa4-de39-49e0-ab32-5cb3252f8432" class="">1. <strong>Standardization</strong></h3><ul id="b6d14fbb-1aa1-4327-b6d0-c68da415f016" class="bulleted-list"><li style="list-style-type:disc">Standard Scaler - (Z Score Normalization)</li></ul><h3 id="f7ccbb27-0c62-4568-ab8b-1410124430d6" class="">2. <strong>Normalization</strong></h3><ul id="24315c1d-6137-404a-a351-29c33b6530aa" class="bulleted-list"><li style="list-style-type:disc">Min Max Scaling</li></ul><ul id="eeaba771-d556-4ea1-af80-aff82768180e" class="bulleted-list"><li style="list-style-type:disc">Max Absolute Scaling</li></ul><ul id="2d51936e-9235-4931-b62b-f2478bcedb4e" class="bulleted-list"><li style="list-style-type:disc">Mean Normalization</li></ul><ul id="f24a3f7b-19f6-4318-83f2-89de7603db49" class="bulleted-list"><li style="list-style-type:disc">Robust Scaling</li></ul><h1 id="a2777600-4582-4a30-841a-ac8cc5775bf0" class=""><strong>Standardization (</strong>Standard Scaler<strong>)</strong></h1><p id="88035937-04c0-4a34-a8f4-c321640d3304" class="">Standardization is a scaling technique where the values are centered around the mean with a unit standard deviation. This means that the mean of the attribute becomes zero and the resultant distribution has a unit standard deviation.</p><figure id="40b55465-8e7d-4f14-91b7-402621c8e6ad" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/standard_scaler.png?raw=true"><img style="width:288px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/standard_scaler.png?raw=true"/></a></figure><h1 id="99b198c3-49bf-47b6-8ca9-787955c6a1b1" class="">Normalization</h1><p id="72fb6aab-8de1-483e-8864-c3ec92b0a67a" class="">The goal of normalization is to change the values of numeric columns in the dataset to use a common scale, without distorting differences in the ranges of values or losing information.</p><h1 id="1f7095be-1f8b-4d33-8309-0c641478f4b1" class="">1. Min Max Scaling</h1><p id="bfe4a347-f064-4749-85ed-5317d0393ec1" class="">The minimum value of that feature transformed into 0, the maximum value transformed into 1, and every other value gets transformed into a decimal between 0 and 1.</p><figure id="0d6c474e-b8e5-4813-8ac1-f48660009abb" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/min_max_scaling.png?raw=true"><img style="width:288px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/min_max_scaling.png?raw=true"/></a></figure><h1 id="e420a7dd-2449-486b-95e5-0f007e0eb25b" class="">2. Max Absolute Scaling</h1><p id="8d0c2929-fc6e-4531-9e8b-a98b100a17b1" class="">maximal value of each feature in the training set will be 1. It does not shift/center the data, and thus does not destroy any sparsity.</p><figure id="5e26423b-7919-4432-8a02-67804c7faa2c" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/max_absolute_scaling.png?raw=true"><img style="width:288px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/max_absolute_scaling.png?raw=true"/></a></figure><h1 id="cfba2afd-04a3-4885-992d-57b64d261931" class="">3. Mean Normalization</h1><p id="30aa3026-6c85-41fa-9a1b-ef556df7c92b" class="">It is very similar to Min Max Scaling, just that we use mean to normalize the data. Removes the mean from the data and scales it into max and min values.</p><figure id="00a89673-ffa4-40d3-a9de-b00eb716e56b" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/mean_normalization.png?raw=true"><img style="width:288px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/mean_normalization.png?raw=true"/></a></figure><h1 id="7ca98560-aa9c-47e0-aa42-b449c68f9b07" class="">4. Robust Scaling</h1><p id="7a09aee0-49b6-4534-9009-6a1cc3a8b9fa" class="">This Scaler removes the median and scales the data according to the quantile range (defaults to IQR: Interquartile Range). The IQR is the range between the 1st quartile (25th quantile) and the 3rd quartile (75th quantile).</p><figure id="3b29512d-9f82-4cf6-b897-728206771bd9" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/robust_scaling.png?raw=true"><img style="width:240px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/robust_scaling.png?raw=true"/></a></figure><h1 id="4cff7b9e-a150-4654-aefc-0b86cc35e4d2" class=""><strong>The Big Question – Normalize or Standardize?</strong></h1><ul id="99af3c05-faa7-437e-9f11-267c04824d55" class="bulleted-list"><li style="list-style-type:disc">Normalization is good to use when you know that the distribution of your data does not follow a Gaussian distribution. This can be useful in algorithms that do not assume any distribution of the data like K-Nearest Neighbors and Neural Networks.</li></ul><ul id="7757486b-fbda-4adb-9464-b7a7d870da5c" class="bulleted-list"><li style="list-style-type:disc">Standardization, on the other hand, can be helpful in cases where the data follows a Gaussian distribution. However, this does not have to be necessarily true. Also, unlike normalization, standardization does not have a bounding range. So, even if you have outliers in your data, they will not be affected by standardization.</li></ul><h1 id="0af79327-76af-41dc-b461-031088553739" class=""><strong>What is Feature Engineering?</strong></h1><p id="9277efbd-a24f-47e8-9302-15acfbd42d57" class="">Feature Engineering is the process of extracting and organizing the important features from raw data in such a way that it fits the purpose of the machine learning model. It can be thought of as the art of selecting the important features and transforming them into refined and meaningful features that suit the needs of the model.</p><p id="52968481-b2b1-4c9f-af2c-b34449cde1b5" class="">Eg: Creating a feature Area from length and breadth features in data.</p><h1 id="3e5ec70a-1e36-4cfc-9fa0-9f8f89cdda6d" class=""><strong>Why Polynomial Regression?</strong></h1><p id="bdb0d785-a517-4761-83df-b0a7cf9f3e50" class="">Suppose if we have non-linear data then Linear regression will not capable to draw a best-fit line and It fails in such conditions. consider the below diagram which has a non-linear relationship and you can see the Linear regression results on it, which does not perform well means which do not comes close to reality. Hence, we introduce polynomial regression to overcome this problem, which helps identify the curvilinear relationship between independent and dependent variables.</p><figure id="d8af3521-126e-44aa-bfbb-481bd33e23c0" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/polynomial_regression.png?raw=true"><img style="width:384px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/polynomial_regression.png?raw=true"/></a></figure><h1 id="53e6da0b-e83a-4530-a2f1-ebd2f01e5932" class=""><span style="border-bottom:0.05em solid"><strong>LOGISTIC REGRESSION</strong></span></h1><ul id="b7082dca-0da7-489f-b46a-d811ad6f39e1" class="bulleted-list"><li style="list-style-type:disc">Logistic regression is a predictive analysis of Probabilities for classification problems.</li></ul><ul id="8a9973c4-67bc-4953-8015-54d11dd21560" class="bulleted-list"><li style="list-style-type:disc">It is used when our dependent variable has only 2 outputs. </li></ul><ul id="44eda243-ddb5-448f-868f-eceabc5f531a" class="bulleted-list"><li style="list-style-type:disc">Eg: A person will survive this accident or not, The student will pass this exam or not.</li></ul><p id="f8bbd875-c670-4cbd-9fe4-d41495bd31e5" class="">Here we replace linear function with Logistic/Sigmoid Function</p><figure id="1eb85b81-e188-4a9c-8315-a472f396afad" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/logistic_regression.png?raw=true"><img style="width:576px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/logistic_regression.png?raw=true"/></a></figure><h1 id="db8de71c-c8a5-4d8b-89db-b4e1790b46d2" class=""><strong>Decision Boundary – Logistic Regression</strong></h1><ul id="ec393175-f8a4-4461-bcfa-64c92bbaf3a0" class="bulleted-list"><li style="list-style-type:disc">The line or margin that separates the classes.</li></ul><ul id="802aa75c-dfe5-4c9d-8f19-4655fe9402b3" class="bulleted-list"><li style="list-style-type:disc">Classification algorithms are all about finding the decision boundaries.</li></ul><ul id="d96edbe2-916b-41f2-aaf3-89c2e7eabcea" class="bulleted-list"><li style="list-style-type:disc">It need not be straight line always.</li></ul><figure id="345995d8-eaf9-489a-8ba1-672fb571cd9c" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/decision_boundary.png?raw=true"><img style="width:480px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/decision_boundary.png?raw=true"/></a></figure><h1 id="d6b22cb9-5673-4810-9824-a4075b139ecf" class=""><strong>What is Log Loss?</strong></h1><p id="acc55d47-d949-4093-bc07-d5ce671e8469" class="">Log-loss is indicative of how close the prediction probability is to the corresponding actual/true value (0 or 1 in case of binary classification).</p><ul id="612b7194-007f-4022-8c6e-cb81ee3d2cdb" class="bulleted-list"><li style="list-style-type:disc">Lower log loss value means better prediction</li></ul><ul id="2fd46d8e-d3cf-447d-91fa-b6c8512ea9b7" class="bulleted-list"><li style="list-style-type:disc">Higher log loss means worse prediction</li></ul><h1 id="768a9328-40e5-44eb-be7b-e74940a63c5b" class=""><strong>Equation of Log Loss Cost Function</strong></h1><figure id="dd6c440f-1cdc-40fb-887b-f616a5909e27" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/log_loss_eq.png?raw=true"><img style="width:528px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/log_loss_eq.png?raw=true"/></a></figure><ul id="6c1a0140-eedc-469a-9062-82a8f55886fe" class="bulleted-list"><li style="list-style-type:disc">For Y = 0, Log Loss graph show low loss for y = 0 and high loss for y = 1</li></ul><ul id="f5e52e0b-0324-4aad-83d4-2351790708f6" class="bulleted-list"><li style="list-style-type:disc">For Y = 1, Log Loss graph show high loss for y = 0 and low loss for y = 1</li></ul><figure id="8515e09d-ccf4-4af9-b722-7e58ee087883" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/log_loss.png?raw=true"><img style="width:480px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/log_loss.png?raw=true"/></a></figure><p id="660d824e-da08-4dce-95ff-742705331520" class="">Learning Curve, Vectorization, Feature Scaling all works same for Logistic Regression just like Linear Regression.</p><figure id="2d3e9caa-b987-4ef3-9ff1-fe3ac41697cc" class="image"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/LR.jpg?raw=true"><img src="https://github.com/arjunan-k/ML_C1/blob/main/Images/LR.jpg?raw=true"/></a></figure><h1 id="e6f713bb-e305-433e-862d-8da106b70bbd" class="">Overfitting and Underfitting in Machine Learning</h1><p id="73c1ab2f-e414-42c1-bf68-8f6d29bbbe50" class="">Overfitting and Underfitting are the two main problems that occur in machine learning and degrade the performance of the machine learning models.</p><p id="b7689260-36a5-4ab7-ab9f-c831abd23522" class="">Before understanding the overfitting and underfitting, let&#x27;s understand some basic term that will help to understand this topic well:</p><ul id="2957d19b-3fa1-4916-a0ee-4cd85c8b6143" class="bulleted-list"><li style="list-style-type:disc"><strong>Signal:</strong> It refers to the true underlying pattern of the data that helps the machine learning model to learn from the data.</li></ul><ul id="b2720595-e12f-484d-8740-2dbb3bf08336" class="bulleted-list"><li style="list-style-type:disc"><strong>Noise:</strong> Noise is unnecessary and irrelevant data that reduces the performance of the model.</li></ul><ul id="357047df-02dc-4f1b-8f31-8c0095eb4fb9" class="bulleted-list"><li style="list-style-type:disc"><strong>Bias: </strong> It is the difference between the predicted values and the actual values. It is a prediction error in the model due to oversimplifying the machine learning algorithms. </li></ul><ul id="ba244d22-22e4-455b-b539-6a24884de2f2" class="bulleted-list"><li style="list-style-type:disc"><strong>Variance:</strong> If the machine learning model performs well with the training dataset, but does not perform well with the test dataset, then variance occurs.</li></ul><h1 id="903b1b4a-568e-4e36-8cef-e145fa0c27c8" class="">Overfitting</h1><ul id="4147c1d4-b240-4f6b-bc55-e05d38dfdc69" class="bulleted-list"><li style="list-style-type:disc">Overfitting occurs when our machine learning model tries to cover all the data points.</li></ul><ul id="a2a747b3-9224-4377-95d7-8d38577f78d4" class="bulleted-list"><li style="list-style-type:disc">Model starts caching noise and inaccurate values present in the dataset, and all these factors reduce the efficiency and accuracy of the model. </li></ul><ul id="eca10f36-b310-4841-8935-b1459bebca60" class="bulleted-list"><li style="list-style-type:disc">The overfitted model has <strong>low bias</strong> and <strong>high variance. </strong></li></ul><ul id="7f92082a-2692-4375-9adf-4bb146744a72" class="bulleted-list"><li style="list-style-type:disc">The chances of overfitting increase as we provide more training to our model.<figure id="3d1556fc-1bdd-41a3-a094-f8f2b74f7fc2" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/overfitting.png?raw=true"><img style="width:240px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/overfitting.png?raw=true"/></a></figure></li></ul><p id="230c45d1-b6d2-4ea0-ad3c-75660c3099fd" class="">It may look efficient, but in reality, it is not so. Because the goal of the regression model to find the best fit line, but here we have not got any best fit, so, it will generate the prediction errors.</p><h1 id="65e9c94b-d440-4585-a027-51d98fbbeefc" class="">How to avoid the Overfitting:</h1><p id="b2cd4572-4d48-435b-bb9c-771cb68c8bd6" class="">Both overfitting and underfitting cause the degraded performance of the machine learning model. But the main cause is overfitting, so there are some ways by which we can reduce the occurrence of overfitting in our model.</p><ul id="95489e83-83aa-48a5-9c85-65f4c305979c" class="bulleted-list"><li style="list-style-type:disc"><strong>Cross-Validation</strong></li></ul><ul id="8288b277-3317-4733-a6d0-b8f0f3ee6902" class="bulleted-list"><li style="list-style-type:disc"><strong>Training with more data</strong></li></ul><ul id="8b497d65-302e-4840-94f9-e2272f4cfbce" class="bulleted-list"><li style="list-style-type:disc"><strong>Ensembling (T</strong>echnique that combines several base models to produce one optimal model)</li></ul><ul id="dcdb55a4-1969-4ae9-96b7-7a3e651875bc" class="bulleted-list"><li style="list-style-type:disc"><strong>Removing features</strong></li></ul><ul id="8ccc5e87-25b9-4ada-9451-0397e46f78dd" class="bulleted-list"><li style="list-style-type:disc"><strong>Early stopping the training</strong></li></ul><ul id="e2121096-70c3-40c7-b22b-f59a237e5daf" class="bulleted-list"><li style="list-style-type:disc"><strong>Regularization (Reduce Size of Parameters)</strong></li></ul><h1 id="fde5b9c6-2bd2-432d-a5b8-71c5cb986d4b" class=""><strong>Underfitting</strong></h1><ul id="d06cbdae-3af5-45d2-a733-b3e9212de3a4" class="bulleted-list"><li style="list-style-type:disc">In the case of underfitting, the model is not able to learn enough from the training data, and hence it reduces the accuracy and produces unreliable predictions. </li></ul><ul id="65355354-7f1f-4b2e-9bbb-2bbd96006884" class="bulleted-list"><li style="list-style-type:disc">Underfitted model has <strong>high bias</strong> and <strong>low variance</strong>.<figure id="a09efa26-e89e-4bfc-9eee-85ae77854a95" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/underfitting.png?raw=true"><img style="width:192px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/underfitting.png?raw=true"/></a></figure></li></ul><p id="f7c557cf-b775-4b1f-a57c-ecaf5614818b" class="">
+</p><p id="613118b9-c847-409c-9cdb-d3a04f199bb4" class="">
+</p><h1 id="cf48018f-c475-498a-ab26-1d8ffb179c82" class="">How to avoid Underfitting:</h1><ul id="b37e6618-aa09-470b-abe6-05009897e135" class="bulleted-list"><li style="list-style-type:disc">By increasing the training time of the model.</li></ul><ul id="4ab4fcd9-a1cd-48a7-9407-c30f9208cf77" class="bulleted-list"><li style="list-style-type:disc">By increasing the number of features.</li></ul><h1 id="49b72a62-fc9d-4b94-a4da-42051efc88c5" class="">Goodness of Fit</h1><p id="da2f16bf-2800-4968-81bd-28312300b295" class="">The model with a good fit is between the underfitted and overfitted model, and ideally, it makes predictions with 0 errors, but in practice, it is difficult to achieve it.</p><p id="44845aa7-afa7-4c23-a1f6-e3b2e136584a" class="">As when we train our model for a time, the errors in the training data go down, and the same happens with test data. But if we train the model for a long duration, then the performance of the model may decrease due to the overfitting, as the model also learn the noise present in the dataset. The errors in the test dataset start increasing, so the point, just before the raising of errors, is the good point, and we can stop here for achieving a good model.</p><figure id="1e7f5a77-d635-4328-8f59-ed2667f0472a" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/good_fit.png?raw=true"><img style="width:288px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/good_fit.png?raw=true"/></a></figure><h1 id="76e63050-7614-475a-855a-7b4e55854a34" class="">REGULARIZATION</h1><p id="d711df83-6eef-486a-bfbc-f5e91da1a280" class="">We mainly regularizes or reduces the coefficient of features toward zero. In simple words, &quot;In regularization technique, we reduce the magnitude of the features by keeping the same number of features.&quot;</p><figure id="0002699f-6046-4bba-a56d-e2422f11c10c" class="image"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/regularization.jpg?raw=true"><img src="https://github.com/arjunan-k/ML_C1/blob/main/Images/regularization.jpg?raw=true"/></a></figure><p id="7a6dc341-7abe-439a-9009-af8f4a94f89a" class="">
+</p><h1 id="ab3c6871-d2b2-4de5-a684-b821ee66b0d2" class=""><strong>Types of Regularization Techniques</strong></h1><p id="d30b2d71-78ce-4be2-824c-57081795344f" class="">There are two main types of regularization techniques: L1(Lasso) and L2( Ridge) regularization</p><h1 id="b72ce476-044a-46fe-87df-50ec8b401790" class="">1<strong><strong>) Lasso Regularization (L1 Regularization)</strong></strong></h1><p id="805457b3-8a4a-4951-af29-00394ef13dbe" class="">In L1 you add information to model equation to be the absolute sum of theta vector (θ) multiply by the regularization parameter (λ) which could be any large number over size of data (m), where (n) is the number of features.</p><figure id="57e14c29-0902-48f8-9528-e6fa2e4e79f1" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/l1.png?raw=true"><img style="width:624px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/l1.png?raw=true"/></a></figure><h1 id="124705e4-3748-4852-8b3d-701c00f49e57" class="">2<strong>) Ridge Regularization (L2 Regularization)</strong></h1><p id="0548f1d5-7dee-48f2-be71-62e1e0e4d4dc" class="">In L2, you add the information to model equation to be the sum of vector (θ) squared multiplied by the regularization parameter (λ) which can be any big number over size of data (m), which (n) is a number of features.</p><figure id="c42db959-61bf-4841-9048-65b85ac25ad8" class="image" style="text-align:left"><a href="https://github.com/arjunan-k/ML_C1/blob/main/Images/l2.png?raw=true"><img style="width:624px" src="https://github.com/arjunan-k/ML_C1/blob/main/Images/l2.png?raw=true"/></a></figure><h1 id="e15e4382-47d2-47dc-9ba3-923f0bd52ae5" class="">THANK YOU</h1><p id="7d2c7f5a-73cf-4b96-90d5-f37ea622a551" class="">
+</p><p id="3d6e2e47-1e11-4997-a384-7a6b19586613" class="">
+</p><p id="29b8aa63-59a0-4119-973d-9598f1aad2ae" class="">
+</p><p id="6e6fc088-45d7-454b-9977-f64d3446bf32" class="">
+</p><p id="a6137368-b768-49aa-af8e-00af7bcf01a8" class="">
+</p><p id="92e52987-a6c0-4027-bdca-e8df8f1683f9" class="">
+</p><p id="28e15f3b-915c-4a52-a6c4-5f0b2574ddef" class="">
+</p></div></article></body></html>
