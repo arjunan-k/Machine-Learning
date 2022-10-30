@@ -5,4 +5,5 @@
 # Click here -> [Pdf Notes](https://github.com/arjunan-k/Machine-Learning-Specialization-Coursera-Notes/blob/main/Images/Supervised_Machine_Learning_Regression_and_Classification_Arjunan_K.pdf)
 Complete and detailed pdf plus handwritten notes of Machine Learning Specialization 2022 by Andrew Ng in collaboration between DeepLearning.AI and Stanford Online in Coursera.
 
-Not complete yet, updates are going on. Will finish soon.
+Not complete yet, Links wont be working right now.
+Updates are going on. Will finish soon.
