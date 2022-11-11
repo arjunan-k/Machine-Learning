@@ -1,14 +1,8 @@
-# Machine Learning Specialization Coursera Notes
+# Machine Learning Specialization Coursera
 ![pic](https://github.com/arjunan-k/Machine-Learning-Specialization-Coursera/blob/main/Images/Machine_Learning_Specialization_Coursera.png?raw=true)
+Complete and detailed pdf plus handwritten notes of Machine Learning Specialization 2022 by Andrew Ng in collaboration between DeepLearning.AI and Stanford Online in Coursera, Made by [Arjunan K](https://www.linkedin.com/in/arjunan-k/).
 
-# Click here -> [Website](https://arjunan-k.github.io/Machine-Learning-Specialization-Coursera-Notes/)
-# Click here -> [Pdf Notes](https://github.com/arjunan-k/Machine-Learning-Specialization-Coursera-Notes/blob/main/Images/Supervised_Machine_Learning_Regression_and_Classification_Arjunan_K.pdf)
-Complete and detailed pdf plus handwritten notes of Machine Learning Specialization 2022 by Andrew Ng in collaboration between DeepLearning.AI and Stanford Online in Coursera.
-
-Not complete yet, Links wont be working right now.
-Updates are going on. Will finish soon.
-
-
+# [Website of Complete Notes](https://arjunan-k.github.io/Machine-Learning-Specialization-Coursera-Notes/)
 
 - ### [C1 - Supervised Machine Learning: Regression and Classification]()
   - ##### [Week 1]()
